@@ -97,9 +97,6 @@ fun Drawer(
         }
 
     }
-
-
-
 }
 
 @Composable
@@ -110,7 +107,7 @@ fun DrawerBody(
 ) {
     val items = listOf(
         NavigationItem.Home,
-        NavigationItem.LifeFileGuides,
+        NavigationItem.ViewLifeFileGuides,
         NavigationItem.BibleStories,
         NavigationItem.BibleTrivia,
         NavigationItem.ReadingPlans,

@@ -8,9 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
+import com.example.bibleprojekt.helpers.DBHandler
 import com.example.bibleprojekt.ui.components.Drawer
 import com.example.bibleprojekt.ui.components.Navigation
 import com.example.bibleprojekt.ui.components.TopBar
@@ -28,6 +27,8 @@ class MainActivity : ComponentActivity() {
                 val scope = rememberCoroutineScope()
                 val navController = rememberNavController()
 
+                val dbHandler = DBHandler(applicationContext)
+
                 Scaffold(
                     scaffoldState = scaffoldState,
                     topBar = {
@@ -41,7 +42,10 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                 ) {
-                    Navigation(navController = navController)
+                    Navigation(
+                        dbHandler = dbHandler,
+                        navController = navController
+                    )
                 }
             }
         }

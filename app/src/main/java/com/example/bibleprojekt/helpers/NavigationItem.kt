@@ -17,11 +17,26 @@ sealed class NavigationItem(
         contentDescription = "Route to Home"
     )
 
+    //Life File Guides Routes
+
     object LifeFileGuides : NavigationItem(
+        route = "life_file_guides_root",
+        icon = Icons.Default.ListAlt,
+        title = "Life File Guides Root",
+        contentDescription = "Route to Life File Guides Root"
+    )
+
+    object ViewLifeFileGuides : NavigationItem(
         route = "life_file_guides",
         icon = Icons.Default.ListAlt,
         title = "Life File Guides",
-        contentDescription = "Route to Life File Guides"
+        contentDescription = "Route to View All Life File Guides"
+    )
+    object CreateLifeFileGuides : NavigationItem(
+        route = "create_life_file_guides",
+        icon = Icons.Default.ListAlt,
+        title = "Create Life File Guides",
+        contentDescription = "Route to Create Life File Guides"
     )
 
     object BibleStories : NavigationItem(

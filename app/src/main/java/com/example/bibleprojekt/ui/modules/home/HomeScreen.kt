@@ -57,25 +57,25 @@ fun HomeScreen(
             Button(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = onClickViewLifeFileGuides) {
-                Text(text = "View Life File Guides")
+                Text(text = "Go to Life File Guides")
             }
 
             Button(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = onClickViewBibleStories) {
-                Text(text = "View Bible Stories")
+                Text(text = "Go to Bible Stories")
             }
 
             Button(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = onClickViewBibleTrivia) {
-                Text(text = "View Bible Trivia")
+                Text(text = "Go to Bible Trivia")
             }
 
             Button(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = onClickViewReadingPlans) {
-                Text(text = "View Reading Plans")
+                Text(text = "Go to Reading Plans")
             }
 
 //            Card(
