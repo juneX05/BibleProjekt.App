@@ -44,6 +44,8 @@ fun ViewLifeFileGuidesScreen(
             sections.map { true }.toMutableStateList()
         }
 //        var isCollapsed by remember { mutableStateOf(true) } // State for section collapsed state
+
+        var previousClickedIndex = -1
         LazyColumn(reverseLayout = false, contentPadding = PaddingValues(6.dp)) {
 
             sections.forEachIndexed { index, section ->
@@ -54,7 +56,12 @@ fun ViewLifeFileGuidesScreen(
                             .fillMaxWidth()
                             .background(Color.White)
                             .padding(16.dp)
-                            .clickable { collapsed[index] = !isCollapsed },
+                            .clickable {
+                                if (previousClickedIndex > -1)
+                                    collapsed[previousClickedIndex] = true
+                                previousClickedIndex = index;
+                                collapsed[index] = !isCollapsed
+                            },
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
@@ -82,8 +89,7 @@ fun ViewLifeFileGuidesScreen(
                     }
                 }
 
-                items( section.stories.size) {
-                    position ->
+                items(section.stories.size) { position ->
                     val story: Story = section.stories[position]
                     if (!isCollapsed) {
                         Text(
