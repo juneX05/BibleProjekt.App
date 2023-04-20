@@ -98,10 +98,11 @@ fun NavGraphBuilder.lifeFileGuideRoutes(
                 dbHandler = dbHandler,
                 context = LocalContext.current.applicationContext,
                 onLifeFileGuideTitleClick = { story ->
-                    navController.navigateToRoute(
-                        navController = navController,
+                    navController.navigate(
                         route = "${LifeFileGuideDetails.route}/${story.title}/${story.subtitle}",
-                    )
+                    ) {
+                        launchSingleTop = true
+                    }
                 }
             )
         }
@@ -109,8 +110,7 @@ fun NavGraphBuilder.lifeFileGuideRoutes(
         composable(
             route = LifeFileGuideDetails.routeWithArgs,
             arguments = LifeFileGuideDetails.arguments
-        ) {
-            navBackStackEntry ->
+        ) { navBackStackEntry ->
             val title = navBackStackEntry.arguments?.getString(LifeFileGuideDetails.titleArg)
             val subtitle = navBackStackEntry.arguments?.getString(LifeFileGuideDetails.subtitleArg)
 
