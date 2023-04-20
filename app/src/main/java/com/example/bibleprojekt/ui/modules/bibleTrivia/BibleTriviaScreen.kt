@@ -21,7 +21,7 @@ fun BibleTriviaScreen() {
     ) {
 
         Text(
-            text = "Profile Screen",
+            text = "Coming Soon...",
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colors.onBackground,
             fontSize = 30.sp,
