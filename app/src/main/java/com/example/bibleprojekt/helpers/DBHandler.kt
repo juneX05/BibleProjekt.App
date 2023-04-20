@@ -36,8 +36,6 @@ class DBHandler (context: Context) :
         }
 
 //        db.execSQL(Book.createTableQuery())
-        db.execSQL(LifeFileSection.createTableQuery())
-        db.execSQL(LifeFileGuide.createTableQuery())
 //
 //        seedDB(db)
     }
@@ -48,8 +46,6 @@ class DBHandler (context: Context) :
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL(Book.upgradeTableQuery())
-        db.execSQL(LifeFileSection.upgradeTableQuery())
-        db.execSQL(LifeFileGuide.upgradeTableQuery())
 
         onCreate(db)
     }

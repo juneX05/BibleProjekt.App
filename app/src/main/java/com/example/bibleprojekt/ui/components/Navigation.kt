@@ -2,6 +2,7 @@ package com.example.bibleprojekt.ui.components
 
 import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -96,6 +97,7 @@ fun NavGraphBuilder.lifeFileGuideRoutes(
         composable(NavigationItem.ViewLifeFileGuides.route) {
             ViewLifeFileGuidesScreen(
                 dbHandler = dbHandler,
+                context = LocalContext.current.applicationContext,
                 onAddLifeFileGuideButtonClick = {
                     navController.navigateToRoute(
                         navController = navController,
