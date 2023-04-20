@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.ArrowDropUp
@@ -54,7 +55,7 @@ fun ViewLifeFileGuidesScreen(
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .background(Color.White)
+                            .background(MaterialTheme.colors.background)
                             .padding(16.dp)
                             .clickable {
                                 if (previousClickedIndex > -1)
@@ -96,11 +97,11 @@ fun ViewLifeFileGuidesScreen(
                             text = story.subtitle,
                             style = TextStyle(
                                 fontSize = 16.sp,
-                                color = Color.Blue
+                                color = MaterialTheme.colors.primary
                             ),
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .background(Color.White)
+                                .background(MaterialTheme.colors.background)
                                 .padding(horizontal = 16.dp, vertical = 8.dp)
                                 .clickable {
                                     onLifeFileGuideTitleClick(
