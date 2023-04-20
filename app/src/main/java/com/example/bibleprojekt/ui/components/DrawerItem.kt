@@ -13,17 +13,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.bibleprojekt.helpers.NavigationItem
+import com.example.bibleprojekt.helpers.Destinations
 
 @Composable
 fun DrawerItem(
-    item: NavigationItem,
+    title: String,
+    icon: ImageVector,
     selected: Boolean,
-    onItemClick: (NavigationItem) -> Unit
+    onItemClick: () -> Unit
 ) {
     val background: Color;
     val color: Color;
@@ -38,14 +40,14 @@ fun DrawerItem(
     Row(verticalAlignment = Alignment.CenterVertically,
     modifier = Modifier
         .fillMaxWidth()
-        .clickable { onItemClick(item) }
+        .clickable { onItemClick() }
         .height(45.dp)
         .background(background)
         .padding(start = 10.dp)) {
         
         Image(
-            imageVector = item.icon,
-            contentDescription = item.contentDescription,
+            imageVector = icon,
+            contentDescription = "$",
             colorFilter = ColorFilter.tint(color),
             modifier = Modifier
                 .height(24.dp)
@@ -54,7 +56,7 @@ fun DrawerItem(
         
         Spacer(modifier = Modifier.width(10.dp))
 
-        Text(text = item.title, fontSize = 16.sp, color = color)
+        Text(text = title, fontSize = 16.sp, color = color)
 
     }
     Divider()

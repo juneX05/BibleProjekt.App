@@ -112,6 +112,15 @@ class LifeFileGuide() {
 
             return sections
         }
+
+        fun getStory(
+            context: Context,
+            title: String?,
+            subtitle: String?
+        ): Story {
+            val section = all(context).first { it.title == title }
+            return section.stories.first { it.subtitle == subtitle }
+        }
     }
 }
 

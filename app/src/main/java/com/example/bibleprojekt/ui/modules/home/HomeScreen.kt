@@ -19,7 +19,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.bibleprojekt.helpers.NavigationItem
 import com.example.bibleprojekt.ui.components.AlertDialogComponent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch

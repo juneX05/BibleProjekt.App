@@ -29,7 +29,7 @@ import com.example.bibleprojekt.helpers.Story
 fun ViewLifeFileGuidesScreen(
     dbHandler: DBHandler,
     context: Context,
-    onAddLifeFileGuideButtonClick: () -> Unit
+    onLifeFileGuideTitleClick: (story: Story) -> Unit = {}
 ) {
     Column(
         modifier = Modifier
@@ -103,7 +103,9 @@ fun ViewLifeFileGuidesScreen(
                                 .background(Color.White)
                                 .padding(horizontal = 16.dp, vertical = 8.dp)
                                 .clickable {
-                                    // navigateToDetailScreen(story)
+                                    onLifeFileGuideTitleClick(
+                                        story
+                                    )
                                 }
                         )
                     }

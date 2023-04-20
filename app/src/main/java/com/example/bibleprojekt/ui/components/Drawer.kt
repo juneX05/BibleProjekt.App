@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.bibleprojekt.helpers.NavigationItem
+import com.example.bibleprojekt.helpers.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -106,11 +106,11 @@ fun DrawerBody(
     navController: NavController
 ) {
     val items = listOf(
-        NavigationItem.Home,
-        NavigationItem.ViewLifeFileGuides,
-        NavigationItem.BibleStories,
-        NavigationItem.BibleTrivia,
-        NavigationItem.ReadingPlans,
+        Home,
+        ViewLifeFileGuides,
+        BibleStories,
+        BibleTrivia,
+        ReadingPlans,
     )
 
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -120,7 +120,8 @@ fun DrawerBody(
 //        items(items.size) { position ->
     items.forEach { item ->
         DrawerItem(
-            item = item,
+            title = item.title,
+            icon = item.icon,
             selected = currentRoute == item.route,
             onItemClick = {
                 navController.navigate(item.route) {

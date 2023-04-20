@@ -9,12 +9,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.example.bibleprojekt.helpers.DBHandler
-import com.example.bibleprojekt.helpers.NavigationItem
+import com.example.bibleprojekt.helpers.*
 import com.example.bibleprojekt.ui.modules.bibleStories.BibleStoriesScreen
 import com.example.bibleprojekt.ui.modules.bibleTrivia.BibleTriviaScreen
 import com.example.bibleprojekt.ui.modules.home.HomeScreen
-import com.example.bibleprojekt.ui.modules.lifeFileGuides.CreateLifeFileGuidesScreen
+import com.example.bibleprojekt.ui.modules.lifeFileGuides.LifeFileGuideDetailsScreen
 import com.example.bibleprojekt.ui.modules.lifeFileGuides.LifeFileGuidesScreen
 import com.example.bibleprojekt.ui.modules.lifeFileGuides.ViewLifeFileGuidesScreen
 import com.example.bibleprojekt.ui.modules.readingPlans.ReadingPlansScreen
@@ -28,43 +27,43 @@ fun Navigation(
 ) {
     NavHost(
         navController = navController,
-        startDestination = NavigationItem.Home.route
+        startDestination = Home.route
     ) {
-        composable(NavigationItem.Home.route) {
+        composable(Home.route) {
             HomeScreen(
                 onClickViewLifeFileGuides = {
                     navController.navigateToRoute(
                         navController = navController,
-                        route = NavigationItem.LifeFileGuides.route,
+                        route = LifeFileGuides.route,
                     )
                 },
                 onClickViewBibleStories = {
                     navController.navigateToRoute(
                         navController = navController,
-                        route = NavigationItem.BibleStories.route,
+                        route = BibleStories.route,
                     )
                 },
                 onClickViewBibleTrivia = {
                     navController.navigateToRoute(
                         navController = navController,
-                        route = NavigationItem.BibleTrivia.route,
+                        route = BibleTrivia.route,
                     )
                 },
                 onClickViewReadingPlans = {
                     navController.navigateToRoute(
                         navController = navController,
-                        route = NavigationItem.ReadingPlans.route,
+                        route = ReadingPlans.route,
                     )
                 },
             )
         }
-        composable(NavigationItem.BibleStories.route) {
+        composable(BibleStories.route) {
             BibleStoriesScreen()
         }
-        composable(NavigationItem.BibleTrivia.route) {
+        composable(BibleTrivia.route) {
             BibleTriviaScreen()
         }
-        composable(NavigationItem.ReadingPlans.route) {
+        composable(ReadingPlans.route) {
             ReadingPlansScreen()
         }
 
@@ -90,25 +89,36 @@ fun NavGraphBuilder.lifeFileGuideRoutes(
     navController: NavHostController
 ) {
     navigation(
-        startDestination = NavigationItem.ViewLifeFileGuides.route,
-        route = NavigationItem.LifeFileGuides.route
+        startDestination = ViewLifeFileGuides.route,
+        route = LifeFileGuides.route
     ) {
 
-        composable(NavigationItem.ViewLifeFileGuides.route) {
+        composable(ViewLifeFileGuides.route) {
             ViewLifeFileGuidesScreen(
                 dbHandler = dbHandler,
                 context = LocalContext.current.applicationContext,
-                onAddLifeFileGuideButtonClick = {
+                onLifeFileGuideTitleClick = { story ->
                     navController.navigateToRoute(
                         navController = navController,
-                        route = NavigationItem.CreateLifeFileGuides.route,
+                        route = "${LifeFileGuideDetails.route}/${story.title}/${story.subtitle}",
                     )
                 }
             )
         }
 
-        composable(NavigationItem.CreateLifeFileGuides.route) {
-            CreateLifeFileGuidesScreen()
+        composable(
+            route = LifeFileGuideDetails.routeWithArgs,
+            arguments = LifeFileGuideDetails.arguments
+        ) {
+            navBackStackEntry ->
+            val title = navBackStackEntry.arguments?.getString(LifeFileGuideDetails.titleArg)
+            val subtitle = navBackStackEntry.arguments?.getString(LifeFileGuideDetails.subtitleArg)
+
+            if (title != null && subtitle != null) {
+                LifeFileGuideDetailsScreen(
+                    title, subtitle
+                )
+            }
         }
 
     }

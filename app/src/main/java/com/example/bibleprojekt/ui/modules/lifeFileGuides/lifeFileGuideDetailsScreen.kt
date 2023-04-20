@@ -3,25 +3,32 @@ package com.example.bibleprojekt.ui.modules.lifeFileGuides
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.bibleprojekt.helpers.DBHandler
+import com.example.bibleprojekt.helpers.LifeFileGuide
+import com.example.bibleprojekt.helpers.Story
 
 @Composable
-fun CreateLifeFileGuidesScreen(
-    onClickViewLifeFileGuides: () -> Unit = {},
-    onClickCreateLifeFileGuide: () -> Unit = {},
+fun LifeFileGuideDetailsScreen(
+    title: String,
+    subtitle: String
 ) {
+    val context =  LocalContext.current.applicationContext
+    val story = remember(subtitle) { LifeFileGuide.getStory(
+        context , title, subtitle
+    ) }
+
     Column(
         modifier = Modifier
             .padding(16.dp)
@@ -34,10 +41,17 @@ fun CreateLifeFileGuidesScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Home",
+                text = story.subtitle,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colors.onBackground,
-                fontSize = 30.sp,
+                fontSize = 15.sp,
+                textAlign = TextAlign.Center
+            )
+
+            Text(
+                text = story.title,
+                color = MaterialTheme.colors.onBackground,
+                fontSize = 13.sp,
                 textAlign = TextAlign.Center
             )
 
@@ -52,7 +66,7 @@ fun CreateLifeFileGuidesScreen(
 
             ) {
 
-                Text(text = "Create Life File Guide")
+                Text(text = story.story)
 
             }
         }
